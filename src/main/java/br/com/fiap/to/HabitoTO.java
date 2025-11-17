@@ -4,7 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class HabitoTO {
-    @NotNull
     private Long idHabito;
     @NotBlank
     //fazer regra de negocio na BO de check

@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 public class RespostaUsuarioTO {
-    @NotNull
     private Long idResposta;
     @NotNull
     private Long idUsuario;
