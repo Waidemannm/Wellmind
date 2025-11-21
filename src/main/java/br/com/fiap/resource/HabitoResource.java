@@ -47,7 +47,7 @@ public class HabitoResource {
         HabitoTO resultado = habitoBO.save(habito);
         Response.ResponseBuilder response = null;
         if (resultado != null){
-            response = Response.created(null);  // 201 - CREATED
+            response = Response.status(201);  // 201 - CREATED
         } else {
             response = Response.status(400);  // 401 - BAD REQUEST
         }

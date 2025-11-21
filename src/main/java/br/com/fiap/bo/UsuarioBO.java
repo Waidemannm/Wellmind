@@ -19,6 +19,10 @@ public class UsuarioBO {
         return usuarioDAO.findById(id);
     }
     public UsuarioTO save(UsuarioTO usuario){
+        String email = usuario.getEmail();
+        if (!email.contains("@") || !email.contains(".com")) {
+            throw new RuntimeException("Email inválido. O email deve conter '@' e terminar com '.com'.");
+        }
         usuarioDAO = new UsuarioDAO();
         return usuarioDAO.save(usuario);
     }
