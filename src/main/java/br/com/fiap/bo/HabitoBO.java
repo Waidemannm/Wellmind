@@ -53,6 +53,31 @@ public class HabitoBO {
     }
     public HabitoTO update(HabitoTO habito){
         habitoDAO = new HabitoDAO();
+        String tipo = habito.getTipo().trim().toUpperCase();
+        String unidade = habito.getUnidade().trim().toUpperCase();
+        List<String> tiposValidos = List.of(
+                "SONO",
+                "HIDRATAÇÃO",
+                "ALIMENTAÇÃO",
+                "HUMOR E ENERGIA",
+                "ESTRESSE E FOCO",
+                "OBSERVAÇÕES"
+        );
+        if (!tiposValidos.contains(tipo)) {
+            throw new RuntimeException("Tipo de hábito inválido. Valores aceitos: " + tiposValidos);
+        }
+        List<String> unidadesValidas = List.of(
+                "HORAS",
+                "LITROS",
+                "REFEIÇÕES",
+                "ESCALA",
+                "TEXTO LIVRE"
+        );
+        if (!unidadesValidas.contains(unidade)) {
+            throw new RuntimeException("Unidade inválida. Valores aceitos: " + unidadesValidas);
+        }
+        habito.setTipo(tipo);
+        habito.setUnidade(unidade);
         return habitoDAO.update(habito);
     }
 }
