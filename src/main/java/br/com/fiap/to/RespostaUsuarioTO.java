@@ -10,8 +10,7 @@ public class RespostaUsuarioTO {
     private Long idUsuario;
     @NotNull
     private Long idHabito;
-    @Min(0)
-    @Max(24)
+   
     private int resposta;
     private String observacoes;
 
