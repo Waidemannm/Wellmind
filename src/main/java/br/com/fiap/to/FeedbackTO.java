@@ -7,8 +7,6 @@ public class FeedbackTO {
     private Long idFeedback;
     @NotNull
     private Long idUsuario;
-    @NotNull
-    private Long idResposta;
     @NotBlank
     private String mensagem;
 
@@ -16,10 +14,9 @@ public class FeedbackTO {
 
     }
 
-    public FeedbackTO(Long idFeedback, Long idUsuario, Long idResposta, String mensagem) {
+    public FeedbackTO(Long idFeedback, Long idUsuario, String mensagem) {
         this.idFeedback = idFeedback;
         this.idUsuario = idUsuario;
-        this.idResposta = idResposta;
         this.mensagem = mensagem;
     }
 
@@ -39,13 +36,6 @@ public class FeedbackTO {
         this.idUsuario = idUsuario;
     }
 
-    public Long getIdResposta() {
-        return idResposta;
-    }
-
-    public void setIdResposta(Long idResposta) {
-        this.idResposta = idResposta;
-    }
 
     public String getMensagem() {
         return mensagem;

@@ -17,7 +17,6 @@ public class FeedbackDAO {
                 FeedbackTO feedback = new FeedbackTO();
                 feedback.setIdFeedback(rs.getLong("id_feedback"));
                 feedback.setIdUsuario(rs.getLong("id_usuario"));
-                feedback.setIdResposta(rs.getLong("id_resposta"));
                 feedback.setMensagem(rs.getString("ds_mensagem"));
                 feedbacks.add(feedback);
             }
@@ -38,7 +37,6 @@ public class FeedbackDAO {
             if (rs.next()) {
                 feedback.setIdFeedback(rs.getLong("id_feedback"));
                 feedback.setIdUsuario(rs.getLong("id_usuario"));
-                feedback.setIdResposta(rs.getLong("id_resposta"));
                 feedback.setMensagem(rs.getString("ds_mensagem"));
             } else {
                 return null;
@@ -52,11 +50,10 @@ public class FeedbackDAO {
     }
 
     public FeedbackTO save(FeedbackTO feedback) {
-        String sql = "insert into t_wmd_feedback (id_usuario, id_resposta, ds_mensagem) values (?, ?, ?)";
+        String sql = "insert into t_wmd_feedback (id_usuario, ds_mensagem) values (?, ?)";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setLong(1, feedback.getIdUsuario());
-            ps.setLong(2, feedback.getIdResposta());
-            ps.setString(3, feedback.getMensagem());
+            ps.setString(2, feedback.getMensagem());
             if (ps.executeUpdate() > 0) {
                 return feedback;
             } else {
@@ -84,12 +81,11 @@ public class FeedbackDAO {
     }
 
     public FeedbackTO update(FeedbackTO feedback) {
-        String sql = "update t_wmd_feedback set id_usuario = ?, id_resposta = ?, ds_mensagem = ? where id_feedback = ?";
+        String sql = "update t_wmd_feedback set id_usuario = ?, ds_mensagem = ? where id_feedback = ?";
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
             ps.setLong(1, feedback.getIdUsuario());
-            ps.setLong(2, feedback.getIdResposta());
-            ps.setString(3, feedback.getMensagem());
-            ps.setLong(4, feedback.getIdFeedback());
+            ps.setString(2, feedback.getMensagem());
+            ps.setLong(3, feedback.getIdFeedback());
             if (ps.executeUpdate() > 0) {
                 return feedback;
             } else {
